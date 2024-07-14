@@ -6,12 +6,14 @@ using namespace std;
          if(r<low  || l>high) return INT_MAX;
          // complete overlap
          if(l<=low && high<=r) return tree[ind];
+        // partial overlap
          int mid=(low+high)>>1;
+        // divide the array in two part until array contain single element
       int left=   query(2*ind+1,low,mid,l,r,tree);
       int right=   query(2*ind+2,mid+1,high,l,r,tree);
       return min(left,right);
 }
- 
+ // create the segment tree 
   void build(vector<int>&vs,int ind,int low,int high,vector<int>&tree)
   {
       if(low==high)
@@ -29,6 +31,7 @@ int main() {
     int n;
     cin>>n;
     vector<int>vs(n);
+    // maximum node can be 4*n in segment tree
     vector<int>tree(4*n,0);
     for(int i=0;i<n;i++)
     {
